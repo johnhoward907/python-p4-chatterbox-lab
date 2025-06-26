@@ -32,3 +32,12 @@ def make_messages():
 if __name__ == '__main__':
     with app.app_context():
         make_messages()
+
+with app.app_context():
+    Message.query.delete()
+
+    m1 = Message(body="Hello World!", username="Ian")
+    m2 = Message(body="Hi there!", username="Jane")
+
+    db.session.add_all([m1, m2])
+    db.session.commit()
